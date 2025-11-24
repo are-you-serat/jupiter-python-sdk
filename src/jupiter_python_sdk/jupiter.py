@@ -1124,10 +1124,10 @@ class Jupiter():
             }
         }
         """
-        token_prices_url = "https://price.jup.ag/v4/price?ids=" + input_mint
+        token_prices_url = "https://lite-api.jup.ag/price/v3?ids=" + input_mint
         if output_mint:
             token_prices_url += "&vsToken=" + output_mint
-        token_prices = httpx.get(token_prices_url, timeout=Timeout(timeout=30.0)).json()['data']
+        token_prices = httpx.get(token_prices_url, timeout=Timeout(timeout=30.0)).json()[input_mint]['usdPrice']
         return token_prices
 
     @staticmethod
